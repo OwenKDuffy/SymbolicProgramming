@@ -9,12 +9,11 @@ incr(X, Y) :- X = f0(Z), Y = f1(Z), incr(_, Z);
 
 
 legal(X) :- X = f0(null);
-            X = f0(Y), msb1(Y);
-            X = f1(Y), msb1(Y).
+            msb1(X).
 
 msb1(Y) :- Y = f1(null);
-            Y = f0(X), X \= null, msb1(X);
-            Y = f1(X), X \= null, msb1(X).
+            Y = f0(X), X \== null, msb1(X);
+            Y = f1(X), X \== null, msb1(X).
 
 
 
