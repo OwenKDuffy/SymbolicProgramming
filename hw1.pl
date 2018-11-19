@@ -25,6 +25,8 @@ incrR(X, Y) :- legal(X), incr(X, Y).
 add(X, f0(null), X).
 add(X, Y, Z) :- incr(W, Y), add(X, W, V), incr(V, Z).
 
+mult(f0(null), _, f0(null)).
+mult(_ f0(null),f0(null)).
 mult(X, f1(null), X).
 mult(X, Y, Z) :- incr(W, Y), mult(X, W, V), add(X, V, Z).
 
