@@ -41,4 +41,4 @@ pet(zebra) --> [zebra].
 %pt3
 
 sum(N) --> [N].
-sum(N) --> {between(1, N, V), R is N - V}, [V], sum(R).
+sum(N) --> {between(1, N, V), R is N - V, R \== 0}, [V], sum(R).
