@@ -1,32 +1,42 @@
 %pt1
 
-% u2v --> [], u(0).
-% u(CNT+1) --> [0], u(CNT).
-% u(CNT-2) --> [1], u(CNT).
-% u(CNT) --> [2], v(CNT).
-% v(CNT+1) --> [0], v(CNT).
-% v(CNT-2) --> [1], v(CNT).
+u2v --> [], u(0).
+u(CNT) --> [2], v(CNT).
+u(CNT) --> [0], u(succ(CNT)).
+u(CNT) --> [1], u(CNT).
+v(0) --> [].
+v(CNT) --> [0], v(CNT).
+v(succ(succ(CNT))) --> [1], v(CNT).
+% u2v --> u(CNT), [2], v(2 * CNT).
+%
+%
+% u(0) --> [].
+% u(NEWCNT) --> [0], u(CNT), {NEWCNT is CNT + 1}.
+% u(CNT) --> [1], u(CNT).
+%
 % v(0) --> [].
-u2v --> s(CNTU), [2], s(CNTV), {(abs(CNTU - CNTV)) =:= 0}.
-s(NEWCNT) --> [0], s(CNT), {NEWCNT is CNT + 1}.
-s(NEWCNT) --> [1], s(CNT), {NEWCNT is CNT - 2}.
-s(_) --> [].
+% v(CNT) --> [0], v(CNT).
+% v(NEWCNT) --> [1], v(CNT), {NEWCNT is CNT + 1}.
 
 %pt2
-road --> house, house, house.
-house --> col, nat, pet.
+street --> house(A, B, C), house(D, E, F), house(G, H, I),
+        {A \== D, A \== G, D \== G,
+         B \== E, B \== H, E \== H,
+         C \== F, C \== I, F \== I}.
 
-col --> [red].
-col --> [blue].
-col --> [green].
+house(X, Y, Z) --> col(X), nat(Y), pet(Z).
 
-nat --> [english].
-nat --> [japanese].
-nat --> [spanish].
+col(red) --> [red].
+col(blue) --> [blue].
+col(green) --> [green].
 
-pet --> [snail].
-pet --> [jaguar].
-pet --> [zebra].
+nat(english) --> [english].
+nat(japanese) --> [japanese].
+nat(spanish) --> [spanish].
+
+pet(snail) --> [snail].
+pet(jaguar) --> [jaguar].
+pet(zebra) --> [zebra].
 
 %pt3
 
